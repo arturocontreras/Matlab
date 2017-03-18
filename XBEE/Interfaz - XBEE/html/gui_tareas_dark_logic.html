@@ -1,0 +1,1254 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><title>gui_tareas_dark_logic</title><meta name="generator" content="MATLAB 7.10"><meta name="date" content="2013-12-12"><meta name="m-file" content="gui_tareas_dark_logic"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">Limpiar la escena del crimen</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> varargout = gui_tareas_dark_logic(varargin)
+<span class="comment">% GUI_TAREAS_DARK_LOGIC M-file for gui_tareas_dark_logic.fig</span>
+<span class="comment">%      GUI_TAREAS_DARK_LOGIC, by itself, creates a new GUI_TAREAS_DARK_LOGIC or raises the existing</span>
+<span class="comment">%      singleton*.</span>
+<span class="comment">%</span>
+<span class="comment">%      H = GUI_TAREAS_DARK_LOGIC returns the handle to a new GUI_TAREAS_DARK_LOGIC or the handle to</span>
+<span class="comment">%      the existing singleton*.</span>
+<span class="comment">%</span>
+<span class="comment">%      GUI_TAREAS_DARK_LOGIC('CALLBACK',hObject,eventData,handles,...) calls the local</span>
+<span class="comment">%      function named CALLBACK in GUI_TAREAS_DARK_LOGIC.M with the given input arguments.</span>
+<span class="comment">%</span>
+<span class="comment">%      GUI_TAREAS_DARK_LOGIC('Property','Value',...) creates a new GUI_TAREAS_DARK_LOGIC or raises the</span>
+<span class="comment">%      existing singleton*.  Starting from the left, property value pairs are</span>
+<span class="comment">%      applied to the GUI before gui_tareas_dark_logic_OpeningFcn gets called.  An</span>
+<span class="comment">%      unrecognized property name or invalid value makes property application</span>
+<span class="comment">%      stop.  All inputs are passed to gui_tareas_dark_logic_OpeningFcn via varargin.</span>
+<span class="comment">%</span>
+<span class="comment">%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one</span>
+<span class="comment">%      instance to run (singleton)".</span>
+<span class="comment">%</span>
+<span class="comment">% See also: GUIDE, GUIDATA, GUIHANDLES</span>
+
+<span class="comment">% Edit the above text to modify the response to help gui_tareas_dark_logic</span>
+
+<span class="comment">% Last Modified by GUIDE v2.5 27-Nov-2013 16:37:34</span>
+
+<span class="comment">% Begin initialization code - DO NOT EDIT</span>
+gui_Singleton = 1;
+gui_State = struct(<span class="string">'gui_Name'</span>,       mfilename, <span class="keyword">...</span>
+                   <span class="string">'gui_Singleton'</span>,  gui_Singleton, <span class="keyword">...</span>
+                   <span class="string">'gui_OpeningFcn'</span>, @gui_tareas_dark_logic_OpeningFcn, <span class="keyword">...</span>
+                   <span class="string">'gui_OutputFcn'</span>,  @gui_tareas_dark_logic_OutputFcn, <span class="keyword">...</span>
+                   <span class="string">'gui_LayoutFcn'</span>,  [] , <span class="keyword">...</span>
+                   <span class="string">'gui_Callback'</span>,   []);
+<span class="keyword">if</span> nargin &amp;&amp; ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+<span class="keyword">else</span>
+    gui_mainfcn(gui_State, varargin{:});
+<span class="keyword">end</span>
+<span class="comment">% End initialization code - DO NOT EDIT</span>
+
+
+<span class="comment">% --- Executes just before gui_tareas_dark_logic is made visible.</span>
+<span class="keyword">function</span> gui_tareas_dark_logic_OpeningFcn(hObject, eventdata, handles, varargin)
+<span class="comment">% This function has no output args, see OutputFcn.</span>
+<span class="comment">% hObject    handle to figure</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+<span class="comment">% varargin   command line arguments to gui_tareas_dark_logic (see VARARGIN)</span>
+
+background = imread(<span class="string">'agricultor.png'</span>); <span class="comment">%Leer imagen</span>
+axes(handles.dark_logic);              <span class="comment">%Carga la imagen en background</span>
+imshow(background);
+
+background = imread(<span class="string">'casa.jpg'</span>); <span class="comment">%Leer imagen</span>
+axes(handles.axes3);
+imshow(background);<span class="comment">%Carga la imagen en background</span>
+
+background = imread(<span class="string">'carro.jpg'</span>); <span class="comment">%Leer imagen</span>
+axes(handles.axes4);              <span class="comment">%Carga la imagen en background</span>
+imshow(background);
+
+background = imread(<span class="string">'arbol.jpg'</span>); <span class="comment">%Leer imagen</span>
+axes(handles.axes5);              <span class="comment">%Carga la imagen en background</span>
+imshow(background);
+
+background = imread(<span class="string">'edificio.jpg'</span>); <span class="comment">%Leer imagen</span>
+axes(handles.axes6);              <span class="comment">%Carga la imagen en background</span>
+imshow(background);
+
+
+background = imread(<span class="string">'mapa.jpg'</span>); <span class="comment">%Leer imagen</span>
+axes(handles.axes7);              <span class="comment">%Carga la imagen en background</span>
+
+axis <span class="string">off</span>;
+imshow(background);
+<span class="comment">% Choose default command line output for gui_tareas_dark_logic</span>
+handles.output = hObject;
+
+<span class="comment">% Update handles structure</span>
+guidata(hObject, handles);
+
+<span class="comment">% UIWAIT makes gui_tareas_dark_logic wait for user response (see UIRESUME)</span>
+<span class="comment">% uiwait(handles.figure1);</span>
+
+
+<span class="comment">% --- Outputs from this function are returned to the command line.</span>
+<span class="keyword">function</span> varargout = gui_tareas_dark_logic_OutputFcn(hObject, eventdata, handles)
+<span class="comment">% varargout  cell array for returning output args (see VARARGOUT);</span>
+<span class="comment">% hObject    handle to figure</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Get default command line output from handles structure</span>
+varargout{1} = handles.output;
+
+
+<span class="comment">% --- Executes on button press in pushbutton1.</span>
+<span class="keyword">function</span> pushbutton1_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to pushbutton1 (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in pushbutton2.</span>
+<span class="keyword">function</span> pushbutton2_Callback(hObject, eventdata, handles)
+fun =get(handles.color,<span class="string">'Value'</span>)-1
+<span class="comment">%close all;clear all;clc;</span>
+imaqreset
+<span class="comment">% primero se captura un stream de video usando videoinput, con argumento</span>
+<span class="comment">%de winvideo, numero de dispositivo y formato de la camara, si no sabes usa la</span>
+<span class="comment">%funcion imaqtool para averiguarlo es YUY o RGB</span>
+vid=videoinput(<span class="string">'winvideo'</span>,1,<span class="string">'YUY2_640x480'</span>);
+<span class="comment">%640x480 160x120</span>
+<span class="comment">% Se configura las opciones de adquision de video</span>
+set(vid, <span class="string">'FramesPerTrigger'</span>, Inf);
+set(vid, <span class="string">'ReturnedColorspace'</span>, <span class="string">'rgb'</span>)
+vid.FrameGrabInterval = 5;
+<span class="comment">%framegrabinterval significa que tomara cada 5 frame del stream de video adquirida</span>
+<span class="comment">%con start(vid) se activa la adquisicion, pero todavia se toma la primera foto</span>
+start(vid)
+
+<span class="comment">% creamos un bucle que puede ser while always o while true en este caso</span>
+<span class="comment">%y como mi compu es una netbook trucha(trucha=cagada=lenta=barata)</span>
+<span class="comment">%hago que despues de 100 frames adquiridos se salga del bucle para evitar colgadas</span>
+<span class="keyword">while</span>(vid.FramesAcquired&lt;=1000)
+
+    <span class="comment">% se toma una snapshot del stream y se la almacena en data para trabajar mas</span>
+    <span class="comment">%facil</span>
+    data = getsnapshot(vid);
+
+    <span class="comment">% ahora vamos a reconocer el color rojo en tiempo real</span>
+    <span class="comment">% tenemos que extraer el color rojo</span>
+    <span class="comment">% de la imagen en escala de grises de la imagen adquirida en data</span>
+    diff_im = imsubtract(data(:,:,get(handles.color,<span class="string">'Value'</span>)-1), rgb2gray(data));
+    <span class="comment">%imsubstract sirve para sacar algun valor constante de una imagen, usamos como</span>
+    <span class="comment">%argumento el array de data y la funcion rgb2gray de data</span>
+    <span class="comment">%se usa medfilt2 para filtrar la senial del ruido</span>
+    diff_im = medfilt2(diff_im, [3 3]);
+    <span class="comment">% Convertir la imagen en escala de grises a una imagen binaria.</span>
+    diff_im = im2bw(diff_im,0.06);
+
+    <span class="comment">% para determinar el tamanio a reconocer se usa bwareopen para descartar</span>
+    <span class="comment">%imagen de rojo de menos de 300 pixels</span>
+    diff_im = bwareaopen(diff_im,50);
+
+    <span class="comment">% Etiquetamos los elementos conectados en la imagen</span>
+    bw = bwlabel(diff_im, 8);
+
+    <span class="comment">% Ahora hacemos el analisis del "objeto" detectado(que solo son pixels rojos)</span>
+    <span class="comment">%agrupados de mas de 300</span>
+    <span class="comment">% onfiguramos la region etiquetada</span>
+    stats = regionprops(bw, <span class="string">'BoundingBox'</span>, <span class="string">'Centroid'</span>, <span class="string">'Area'</span>, <span class="string">'Perimeter'</span>);
+
+    <span class="comment">% mostramos la imagen</span>
+
+    imshow(data)
+
+    hold <span class="string">on</span>
+
+    <span class="comment">%este es un bucle para encerrar el objeto rojo en un rectangulp y una cruz en el</span>
+    <span class="comment">%centroide(solo es programacion basica de matlab)</span>
+    <span class="keyword">for</span> object = 1:length(stats)
+        A=stats(object).Area;
+        P=stats(object).Perimeter;
+        K=P^2/A
+        forma=get(handles.forma,<span class="string">'Value'</span>);
+        <span class="keyword">if</span>(forma==2)
+            <span class="keyword">if</span>(15&gt;K &amp;&amp; K&gt;13)
+            bb = stats(object).BoundingBox;
+            bc = stats(object).Centroid;
+            rectangle(<span class="string">'Position'</span>,bb,<span class="string">'EdgeColor'</span>,<span class="string">'r'</span>,<span class="string">'LineWidth'</span>,2)
+            plot(bc(1),bc(2), <span class="string">'-m+'</span>)
+            a=text(bc(1)+15,bc(2), strcat(<span class="string">'X: '</span>, num2str(round(bc(1))), <span class="string">' Y: '</span>, num2str(round(bc(2)))));
+            set(a, <span class="string">'FontName'</span>, <span class="string">'Arial'</span>, <span class="string">'FontWeight'</span>, <span class="string">'bold'</span>, <span class="string">'FontSize'</span>, 12, <span class="string">'Color'</span>, <span class="string">'yellow'</span>);
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+        <span class="keyword">if</span>(forma==3)
+            <span class="keyword">if</span>(25&gt;K &amp;&amp; K&gt;22)
+            bb = stats(object).BoundingBox;
+            bc = stats(object).Centroid;
+            rectangle(<span class="string">'Position'</span>,bb,<span class="string">'EdgeColor'</span>,<span class="string">'r'</span>,<span class="string">'LineWidth'</span>,2)
+            plot(bc(1),bc(2), <span class="string">'-m+'</span>)
+            a=text(bc(1)+15,bc(2), strcat(<span class="string">'X: '</span>, num2str(round(bc(1))), <span class="string">' Y: '</span>, num2str(round(bc(2)))));
+            set(a, <span class="string">'FontName'</span>, <span class="string">'Arial'</span>, <span class="string">'FontWeight'</span>, <span class="string">'bold'</span>, <span class="string">'FontSize'</span>, 12, <span class="string">'Color'</span>, <span class="string">'yellow'</span>);
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+         <span class="keyword">if</span>(forma==4)
+            <span class="keyword">if</span>(21&gt;K &amp;&amp; K&gt;15)
+            bb = stats(object).BoundingBox;
+            bc = stats(object).Centroid;
+            rectangle(<span class="string">'Position'</span>,bb,<span class="string">'EdgeColor'</span>,<span class="string">'r'</span>,<span class="string">'LineWidth'</span>,2)
+            plot(bc(1),bc(2), <span class="string">'-m+'</span>)
+            a=text(bc(1)+15,bc(2), strcat(<span class="string">'X: '</span>, num2str(round(bc(1))), <span class="string">' Y: '</span>, num2str(round(bc(2)))));
+            set(a, <span class="string">'FontName'</span>, <span class="string">'Arial'</span>, <span class="string">'FontWeight'</span>, <span class="string">'bold'</span>, <span class="string">'FontSize'</span>, 12, <span class="string">'Color'</span>, <span class="string">'yellow'</span>);
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+<span class="comment">%         if(4*pi*(stats(object).Area)/(stats(object).Perimeter)^2 &gt; 0.75)</span>
+<span class="comment">%         (stats(object).Perimeter)^2/stats(object).Area</span>
+<span class="comment">%             bb = stats(object).BoundingBox;</span>
+<span class="comment">%             bc = stats(object).Centroid;</span>
+<span class="comment">%             rectangle('Position',bb,'EdgeColor','r','LineWidth',2)</span>
+<span class="comment">%             plot(bc(1),bc(2), '-m+')</span>
+<span class="comment">%             a=text(bc(1)+15,bc(2), strcat('X: ', num2str(round(bc(1))), ' Y: ', num2str(round(bc(2)))));</span>
+<span class="comment">%             set(a, 'FontName', 'Arial', 'FontWeight', 'bold', 'FontSize', 12, 'Color', 'yellow');</span>
+<span class="comment">%         end</span>
+
+    <span class="keyword">end</span>
+
+    hold <span class="string">off</span>
+<span class="keyword">end</span>
+<span class="comment">% aqui terminan los 2 bucles</span>
+
+<span class="comment">% detenemos la captura</span>
+stop(vid);
+
+
+<span class="comment">%FLUSHDATA remueve la imagen del motor de adquisicion y la almacena en el buffer</span>
+flushdata(vid);
+
+<span class="comment">% borramos todo(como en cualquier programa)</span>
+clear <span class="string">all</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+<span class="comment">% hObject    handle to pushbutton2 (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on selection change in color.</span>
+<span class="keyword">function</span> color_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to color (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hints: contents = cellstr(get(hObject,'String')) returns color contents as cell array</span>
+<span class="comment">%        contents{get(hObject,'Value')} returns selected item from color</span>
+
+
+<span class="comment">% --- Executes during object creation, after setting all properties.</span>
+<span class="keyword">function</span> color_CreateFcn(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to color (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+
+<span class="comment">% Hint: popupmenu controls usually have a white background on Windows.</span>
+<span class="comment">%       See ISPC and COMPUTER.</span>
+<span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+    set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+<span class="keyword">end</span>
+
+
+
+<span class="keyword">function</span> latitud_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to latitud (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hints: get(hObject,'String') returns contents of latitud as text</span>
+<span class="comment">%        str2double(get(hObject,'String')) returns contents of latitud as a double</span>
+
+
+<span class="comment">% --- Executes during object creation, after setting all properties.</span>
+<span class="keyword">function</span> latitud_CreateFcn(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to latitud (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+
+<span class="comment">% Hint: edit controls usually have a white background on Windows.</span>
+<span class="comment">%       See ISPC and COMPUTER.</span>
+<span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+    set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+<span class="keyword">end</span>
+
+
+
+<span class="keyword">function</span> longitud_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to longitud (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hints: get(hObject,'String') returns contents of longitud as text</span>
+<span class="comment">%        str2double(get(hObject,'String')) returns contents of longitud as a double</span>
+
+
+<span class="comment">% --- Executes during object creation, after setting all properties.</span>
+<span class="keyword">function</span> longitud_CreateFcn(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to longitud (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+
+<span class="comment">% Hint: edit controls usually have a white background on Windows.</span>
+<span class="comment">%       See ISPC and COMPUTER.</span>
+<span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+    set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+<span class="keyword">end</span>
+
+
+<span class="comment">% --- Executes on selection change in forma.</span>
+<span class="keyword">function</span> forma_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to forma (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hints: contents = cellstr(get(hObject,'String')) returns forma contents as cell array</span>
+<span class="comment">%        contents{get(hObject,'Value')} returns selected item from forma</span>
+
+
+<span class="comment">% --- Executes during object creation, after setting all properties.</span>
+<span class="keyword">function</span> forma_CreateFcn(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to forma (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+
+<span class="comment">% Hint: popupmenu controls usually have a white background on Windows.</span>
+<span class="comment">%       See ISPC and COMPUTER.</span>
+<span class="keyword">if</span> ispc &amp;&amp; isequal(get(hObject,<span class="string">'BackgroundColor'</span>), get(0,<span class="string">'defaultUicontrolBackgroundColor'</span>))
+    set(hObject,<span class="string">'BackgroundColor'</span>,<span class="string">'white'</span>);
+<span class="keyword">end</span>
+
+
+<span class="comment">% --- Executes on button press in pushbutton3.</span>
+<span class="keyword">function</span> pushbutton3_Callback(hObject, eventdata, handles)
+
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">%close all;clear all;clc;</span>
+
+delete(instrfind({<span class="string">'Port'</span>},{<span class="string">'COM15'</span>})); <span class="comment">%ajustar puerto serie</span>
+s = serial(<span class="string">'COM15'</span>,<span class="string">'BaudRate'</span>,9600,<span class="string">'Terminator'</span>,<span class="string">'CR/LF'</span>);
+fopen(s);
+
+<span class="comment">% N1 =91.220953*100;%latitud</span>
+<span class="comment">% N2=62.929139*100;%longitud</span>
+
+<span class="comment">%----Coordenadas de entrada---------------------------------------------</span>
+
+cas=get(handles.casa,<span class="string">'Value'</span>);
+car=get(handles.carro,<span class="string">'Value'</span>);
+arb=get(handles.arbol,<span class="string">'Value'</span>);
+edi=get(handles.edificio,<span class="string">'Value'</span>);
+
+<span class="keyword">if</span>(cas+car+arb+edi &gt;1)
+errordlg(<span class="string">'No seleccionar mas de un lugar'</span>,<span class="string">'Error'</span>);
+<span class="keyword">elseif</span> cas==1
+ N1=12.024777*100
+ N2=77.047638*100
+<span class="keyword">elseif</span> car==1
+ N1=12.024611*100
+ N2=77.047844*100
+<span class="keyword">elseif</span> arb==1
+ N1=12.024483*100
+ N2=77.047747*100
+<span class="keyword">elseif</span> edi==1
+ N1=12.024905*100
+ N2=77.047511*100
+<span class="keyword">else</span>
+    N1=-eval(get(handles.latitud,<span class="string">'string'</span>))*100
+    N2=-eval(get(handles.longitud,<span class="string">'string'</span>))*100
+<span class="keyword">end</span>
+
+<span class="comment">%----Imagen de entrada---------------------------------------------</span>
+
+    fun1 =get(handles.color,<span class="string">'Value'</span>)-1
+    fun2 =get(handles.forma,<span class="string">'Value'</span>)-1
+
+    <span class="keyword">if</span>(fun1==0 || fun2==0)
+        vision=0;
+    <span class="keyword">end</span>
+
+     <span class="keyword">if</span>(fun1==1 &amp;&amp; fun2==1)
+        vision=1 ;
+     <span class="keyword">end</span>
+     <span class="keyword">if</span>(fun1==1 &amp;&amp; fun2==2)
+        vision=2;
+     <span class="keyword">end</span>
+     <span class="keyword">if</span>(fun1==1 &amp;&amp; fun2==3)
+        vision=3 ;
+     <span class="keyword">end</span>
+     <span class="keyword">if</span>(fun1==2 &amp;&amp; fun2==1)
+        vision=4 ;
+     <span class="keyword">end</span>
+     <span class="keyword">if</span>(fun1==2 &amp;&amp; fun2==2)
+        vision=5 ;
+     <span class="keyword">end</span>
+     <span class="keyword">if</span>(fun1==2 &amp;&amp; fun2==3)
+        vision=6 ;
+     <span class="keyword">end</span>
+     <span class="keyword">if</span>(fun1==3 &amp;&amp; fun2==1)
+        vision=7 ;
+     <span class="keyword">end</span>
+     <span class="keyword">if</span>(fun1==3 &amp;&amp; fun2==2)
+        vision=8 ;
+     <span class="keyword">end</span>
+     <span class="keyword">if</span>(fun1==3 &amp;&amp; fun2==3)
+        vision=9 ;
+     <span class="keyword">end</span>
+
+
+imagen=vision;<span class="comment">%de los 9 casos basicos</span>
+
+a1=fix(N1/100)
+b1=fix(N1-a1*100)
+c1=fix(N1*100-(a1*10000+b1*100))
+d1=fix(N1*10000-(a1*1000000+b1*10000+c1*100))
+
+a2=fix(N2/100)
+b2=fix(N2-a2*100)
+c2=fix(N2*100-(a2*10000+b2*100))
+d2=N2*10000-(a2*1000000+b2*10000+c2*100)
+
+i=0;
+<span class="keyword">while</span>(i&lt;15)
+i=i+1
+
+fwrite(s,<span class="string">'S'</span>,<span class="string">'char'</span>);
+fwrite(s,a1,<span class="string">'uint8'</span>);
+fwrite(s,b1,<span class="string">'uint8'</span>);
+fwrite(s,c1,<span class="string">'uint8'</span>);
+fwrite(s,d1,<span class="string">'uint8'</span>);
+fwrite(s,a2,<span class="string">'uint8'</span>);
+fwrite(s,b2,<span class="string">'uint8'</span>);
+fwrite(s,c2,<span class="string">'uint8'</span>);
+fwrite(s,d2,<span class="string">'uint8'</span>);
+fwrite(s,imagen,<span class="string">'uint8'</span>);
+
+pause(0.04)
+
+ a2 = fread(s,10);
+
+        <span class="keyword">if</span> a2(1)==<span class="string">'S'</span>
+
+        d11=a2(2);
+        d1_arduino=d11
+        d22=a2(3);
+        d2_arduino=d22
+
+        d33=a2(4);
+        d3_arduino=d33
+        d44=a2(5);
+        d4_arduino=d44
+
+        d55=a2(6);
+        d5_arduino=d55
+        d66=a2(7);
+        d6_arduino=d66
+
+        d77=a2(8);
+        d7_arduino=d77
+        d88=a2(9);
+        d8_arduino=d88
+
+        d99=a2(10);
+        d9_arduino=d99
+
+        <span class="keyword">if</span> a2(2)~=0
+            <span class="keyword">break</span>;
+        <span class="keyword">end</span>
+        <span class="keyword">end</span>
+
+<span class="comment">%pause();</span>
+
+
+<span class="keyword">end</span>
+
+delete(instrfind({<span class="string">'Port'</span>},{<span class="string">'COM15'</span>})); <span class="comment">%ajustar puerto serie</span>
+
+<span class="comment">% hObject    handle to pushbutton3 (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes during object creation, after setting all properties.</span>
+<span class="keyword">function</span> robot_CreateFcn(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to robot (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    empty - handles not created until after all CreateFcns called</span>
+
+
+<span class="comment">% --- Executes on button press in casa.</span>
+<span class="keyword">function</span> casa_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to casa (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hint: get(hObject,'Value') returns toggle state of casa</span>
+
+
+<span class="comment">% --- Executes on button press in carro.</span>
+<span class="keyword">function</span> carro_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to carro (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hint: get(hObject,'Value') returns toggle state of carro</span>
+
+
+<span class="comment">% --- Executes on button press in arbol.</span>
+<span class="keyword">function</span> arbol_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to arbol (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hint: get(hObject,'Value') returns toggle state of arbol</span>
+
+
+<span class="comment">% --- Executes on button press in edificio.</span>
+<span class="keyword">function</span> edificio_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to edificio (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Hint: get(hObject,'Value') returns toggle state of edificio</span>
+
+
+<span class="comment">% --- Executes on button press in monitoreo.</span>
+<span class="keyword">function</span> monitoreo_Callback(hObject, eventdata, handles)
+</pre><pre class="codeinput">delete(instrfind({<span class="string">'Port'</span>},{<span class="string">'COM15'</span>})); <span class="comment">%ajustar puerto serie!</span>
+format <span class="string">long</span>
+<span class="comment">%crear objeto serie</span>
+s = serial(<span class="string">'COM15'</span>,<span class="string">'BaudRate'</span>,9600,<span class="string">'Terminator'</span>,<span class="string">'CR/LF'</span>);
+warning(<span class="string">'off'</span>,<span class="string">'MATLAB:serial:fscanf:unsuccessfulRead'</span>);
+<span class="comment">%abrir puerto</span>
+fopen(s);
+<span class="comment">% par&aacute;metros de medidas</span>
+tmax = 100; <span class="comment">% tiempo de captura en s</span>
+rate = 33; <span class="comment">% resultado experimental (comprobar)</span>
+t=0;
+tic
+
+description = sprintf(<span class="string">'%s&lt;br&gt;%s&lt;/br&gt;&lt;br&gt;%s&lt;/br&gt;'</span>, <span class="keyword">...</span>
+   <span class="string">'3 Apple Hill Drive'</span>, <span class="string">'Natick, MA. 01760'</span>, <span class="keyword">...</span>
+   <span class="string">'http://www.notasutilesenperu.blogspot.com'</span>);
+
+iconDir = fullfile(matlabroot,<span class="string">'toolbox'</span>,<span class="string">'matlab'</span>,<span class="string">'icons'</span>);
+iconFilename = fullfile(iconDir, <span class="string">'robot1.gif'</span>);
+
+name = <span class="string">'R'</span>;
+
+
+<span class="comment">% winopen(filename)</span>
+<span class="comment">%pause(5)</span>
+
+<span class="keyword">while</span>(1)
+ <span class="comment">%   t = toc;</span>
+
+kmlFolder = tempdir;
+
+a2 = fread(s,9);
+
+    <span class="keyword">if</span> a2(1)==<span class="string">'A'</span>
+    <span class="comment">%partes de la latitud</span>
+    a=a2(2);
+    b=a2(3);
+    c=a2(4);
+    d=a2(5);
+    <span class="comment">%partes de la longitud</span>
+    e=a2(6)
+    f=a2(7)
+    g=a2(8)
+    h=a2(9)
+
+lat=-integracion_gps(a,b,c,d)
+lon=-integracion_gps(e,f,g,h)
+
+<span class="keyword">if</span> lat~=0
+filename = fullfile(kmlFolder, <span class="string">'Autonomo.kml'</span>);
+
+kmlwrite(filename, lat, lon ,<span class="keyword">...</span>
+   <span class="string">'Description'</span>, description, <span class="keyword">...</span>
+   <span class="string">'Name'</span>, name, <span class="keyword">...</span>
+   <span class="string">'Icon'</span>, iconFilename ,<span class="string">'IconScale'</span>, 0.5);
+
+winopen(filename)
+<span class="keyword">end</span>
+
+    <span class="keyword">end</span>
+
+<span class="comment">%input('');</span>
+pause(0.08)
+
+<span class="keyword">end</span>
+<span class="comment">% resultado del cronometro</span>
+fprintf(<span class="string">'%g s de captura a %g cap/s \n'</span>,t,i/t);
+</pre><h2>Limpiar la escena del crimen<a name="3"></a></h2><pre class="codeinput">fclose(s);
+delete(s);
+clear <span class="string">s</span>;
+delete(instrfind({<span class="string">'Port'</span>},{<span class="string">'COM15'</span>})); <span class="comment">%ajustar puerto serie!</span>
+</pre><img vspace="5" hspace="5" src="gui_tareas_dark_logic_01.png" alt=""> <p class="footer"><br>
+      Published with MATLAB&reg; 7.10<br></p></div><!--
+##### SOURCE BEGIN #####
+function varargout = gui_tareas_dark_logic(varargin)
+% GUI_TAREAS_DARK_LOGIC M-file for gui_tareas_dark_logic.fig
+%      GUI_TAREAS_DARK_LOGIC, by itself, creates a new GUI_TAREAS_DARK_LOGIC or raises the existing
+%      singleton*.
+%
+%      H = GUI_TAREAS_DARK_LOGIC returns the handle to a new GUI_TAREAS_DARK_LOGIC or the handle to
+%      the existing singleton*.
+%
+%      GUI_TAREAS_DARK_LOGIC('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in GUI_TAREAS_DARK_LOGIC.M with the given input arguments.
+%
+%      GUI_TAREAS_DARK_LOGIC('Property','Value',...) creates a new GUI_TAREAS_DARK_LOGIC or raises the
+%      existing singleton*.  Starting from the left, property value pairs are
+%      applied to the GUI before gui_tareas_dark_logic_OpeningFcn gets called.  An
+%      unrecognized property name or invalid value makes property application
+%      stop.  All inputs are passed to gui_tareas_dark_logic_OpeningFcn via varargin.
+%
+%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
+%      instance to run (singleton)".
+%
+% See also: GUIDE, GUIDATA, GUIHANDLES
+
+% Edit the above text to modify the response to help gui_tareas_dark_logic
+
+% Last Modified by GUIDE v2.5 27-Nov-2013 16:37:34
+
+% Begin initialization code - DO NOT EDIT
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @gui_tareas_dark_logic_OpeningFcn, ...
+                   'gui_OutputFcn',  @gui_tareas_dark_logic_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code - DO NOT EDIT
+
+
+% REPLACE_WITH_DASH_DASH- Executes just before gui_tareas_dark_logic is made visible.
+function gui_tareas_dark_logic_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to gui_tareas_dark_logic (see VARARGIN)
+
+background = imread('agricultor.png'); %Leer imagen
+axes(handles.dark_logic);              %Carga la imagen en background
+imshow(background);
+
+background = imread('casa.jpg'); %Leer imagen
+axes(handles.axes3);   
+imshow(background);%Carga la imagen en background
+
+background = imread('carro.jpg'); %Leer imagen
+axes(handles.axes4);              %Carga la imagen en background
+imshow(background);
+
+background = imread('arbol.jpg'); %Leer imagen
+axes(handles.axes5);              %Carga la imagen en background
+imshow(background);
+
+background = imread('edificio.jpg'); %Leer imagen
+axes(handles.axes6);              %Carga la imagen en background
+imshow(background);
+
+
+background = imread('mapa.jpg'); %Leer imagen
+axes(handles.axes7);              %Carga la imagen en background
+
+axis off;
+imshow(background);
+% Choose default command line output for gui_tareas_dark_logic
+handles.output = hObject;
+
+% Update handles structure
+guidata(hObject, handles);
+
+% UIWAIT makes gui_tareas_dark_logic wait for user response (see UIRESUME)
+% uiwait(handles.figure1);
+
+
+% REPLACE_WITH_DASH_DASH- Outputs from this function are returned to the command line.
+function varargout = gui_tareas_dark_logic_OutputFcn(hObject, eventdata, handles) 
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Get default command line output from handles structure
+varargout{1} = handles.output;
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in pushbutton1.
+function pushbutton1_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in pushbutton2.
+function pushbutton2_Callback(hObject, eventdata, handles)
+fun =get(handles.color,'Value')-1
+%close all;clear all;clc;
+imaqreset
+% primero se captura un stream de video usando videoinput, con argumento
+%de winvideo, numero de dispositivo y formato de la camara, si no sabes usa la
+%funcion imaqtool para averiguarlo es YUY o RGB
+vid=videoinput('winvideo',1,'YUY2_640x480');
+%640x480 160x120
+% Se configura las opciones de adquision de video
+set(vid, 'FramesPerTrigger', Inf);
+set(vid, 'ReturnedColorspace', 'rgb')
+vid.FrameGrabInterval = 5;
+%framegrabinterval significa que tomara cada 5 frame del stream de video adquirida
+%con start(vid) se activa la adquisicion, pero todavia se toma la primera foto
+start(vid)
+
+% creamos un bucle que puede ser while always o while true en este caso
+%y como mi compu es una netbook trucha(trucha=cagada=lenta=barata)
+%hago que despues de 100 frames adquiridos se salga del bucle para evitar colgadas
+while(vid.FramesAcquired<=1000)
+
+    % se toma una snapshot del stream y se la almacena en data para trabajar mas
+    %facil
+    data = getsnapshot(vid);
+    
+    % ahora vamos a reconocer el color rojo en tiempo real
+    % tenemos que extraer el color rojo
+    % de la imagen en escala de grises de la imagen adquirida en data
+    diff_im = imsubtract(data(:,:,get(handles.color,'Value')-1), rgb2gray(data));
+    %imsubstract sirve para sacar algun valor constante de una imagen, usamos como
+    %argumento el array de data y la funcion rgb2gray de data
+    %se usa medfilt2 para filtrar la senial del ruido
+    diff_im = medfilt2(diff_im, [3 3]);
+    % Convertir la imagen en escala de grises a una imagen binaria.
+    diff_im = im2bw(diff_im,0.06);
+    
+    % para determinar el tamanio a reconocer se usa bwareopen para descartar
+    %imagen de rojo de menos de 300 pixels
+    diff_im = bwareaopen(diff_im,50);
+    
+    % Etiquetamos los elementos conectados en la imagen
+    bw = bwlabel(diff_im, 8);
+    
+    % Ahora hacemos el analisis del "objeto" detectado(que solo son pixels rojos)
+    %agrupados de mas de 300
+    % onfiguramos la region etiquetada
+    stats = regionprops(bw, 'BoundingBox', 'Centroid', 'Area', 'Perimeter');
+    
+    % mostramos la imagen
+    
+    imshow(data)
+    
+    hold on
+    
+    %este es un bucle para encerrar el objeto rojo en un rectangulp y una cruz en el
+    %centroide(solo es programacion basica de matlab)
+    for object = 1:length(stats)
+        A=stats(object).Area;
+        P=stats(object).Perimeter;
+        K=P^2/A
+        forma=get(handles.forma,'Value');
+        if(forma==2)
+            if(15>K && K>13)
+            bb = stats(object).BoundingBox;
+            bc = stats(object).Centroid;
+            rectangle('Position',bb,'EdgeColor','r','LineWidth',2)
+            plot(bc(1),bc(2), '-m+')
+            a=text(bc(1)+15,bc(2), strcat('X: ', num2str(round(bc(1))), ' Y: ', num2str(round(bc(2)))));
+            set(a, 'FontName', 'Arial', 'FontWeight', 'bold', 'FontSize', 12, 'Color', 'yellow');
+            end
+        end
+        if(forma==3)
+            if(25>K && K>22)
+            bb = stats(object).BoundingBox;
+            bc = stats(object).Centroid;
+            rectangle('Position',bb,'EdgeColor','r','LineWidth',2)
+            plot(bc(1),bc(2), '-m+')
+            a=text(bc(1)+15,bc(2), strcat('X: ', num2str(round(bc(1))), ' Y: ', num2str(round(bc(2)))));
+            set(a, 'FontName', 'Arial', 'FontWeight', 'bold', 'FontSize', 12, 'Color', 'yellow');
+            end
+        end
+         if(forma==4)
+            if(21>K && K>15)
+            bb = stats(object).BoundingBox;
+            bc = stats(object).Centroid;
+            rectangle('Position',bb,'EdgeColor','r','LineWidth',2)
+            plot(bc(1),bc(2), '-m+')
+            a=text(bc(1)+15,bc(2), strcat('X: ', num2str(round(bc(1))), ' Y: ', num2str(round(bc(2)))));
+            set(a, 'FontName', 'Arial', 'FontWeight', 'bold', 'FontSize', 12, 'Color', 'yellow');
+            end
+        end     
+%         if(4*pi*(stats(object).Area)/(stats(object).Perimeter)^2 > 0.75)        
+%         (stats(object).Perimeter)^2/stats(object).Area
+%             bb = stats(object).BoundingBox;
+%             bc = stats(object).Centroid;
+%             rectangle('Position',bb,'EdgeColor','r','LineWidth',2)
+%             plot(bc(1),bc(2), '-m+')
+%             a=text(bc(1)+15,bc(2), strcat('X: ', num2str(round(bc(1))), ' Y: ', num2str(round(bc(2)))));
+%             set(a, 'FontName', 'Arial', 'FontWeight', 'bold', 'FontSize', 12, 'Color', 'yellow');
+%         end
+        
+    end
+    
+    hold off
+end
+% aqui terminan los 2 bucles
+
+% detenemos la captura
+stop(vid);
+
+
+%FLUSHDATA remueve la imagen del motor de adquisicion y la almacena en el buffer
+flushdata(vid);
+
+% borramos todo(como en cualquier programa)
+clear all
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% hObject    handle to pushbutton2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on selection change in color.
+function color_Callback(hObject, eventdata, handles)
+% hObject    handle to color (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns color contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from color
+
+
+% REPLACE_WITH_DASH_DASH- Executes during object creation, after setting all properties.
+function color_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to color (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function latitud_Callback(hObject, eventdata, handles)
+% hObject    handle to latitud (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of latitud as text
+%        str2double(get(hObject,'String')) returns contents of latitud as a double
+
+
+% REPLACE_WITH_DASH_DASH- Executes during object creation, after setting all properties.
+function latitud_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to latitud (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function longitud_Callback(hObject, eventdata, handles)
+% hObject    handle to longitud (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of longitud as text
+%        str2double(get(hObject,'String')) returns contents of longitud as a double
+
+
+% REPLACE_WITH_DASH_DASH- Executes during object creation, after setting all properties.
+function longitud_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to longitud (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% REPLACE_WITH_DASH_DASH- Executes on selection change in forma.
+function forma_Callback(hObject, eventdata, handles)
+% hObject    handle to forma (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns forma contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from forma
+
+
+% REPLACE_WITH_DASH_DASH- Executes during object creation, after setting all properties.
+function forma_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to forma (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in pushbutton3.
+function pushbutton3_Callback(hObject, eventdata, handles)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%close all;clear all;clc;
+
+delete(instrfind({'Port'},{'COM15'})); %ajustar puerto serie
+s = serial('COM15','BaudRate',9600,'Terminator','CR/LF');
+fopen(s);
+
+% N1 =91.220953*100;%latitud
+% N2=62.929139*100;%longitud
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHCoordenadas de entradaREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+
+cas=get(handles.casa,'Value');
+car=get(handles.carro,'Value');
+arb=get(handles.arbol,'Value');
+edi=get(handles.edificio,'Value');
+
+if(cas+car+arb+edi >1)
+errordlg('No seleccionar mas de un lugar','Error');    
+elseif cas==1
+ N1=12.024777*100
+ N2=77.047638*100 
+elseif car==1
+ N1=12.024611*100
+ N2=77.047844*100   
+elseif arb==1
+ N1=12.024483*100
+ N2=77.047747*100    
+elseif edi==1
+ N1=12.024905*100
+ N2=77.047511*100        
+else
+    N1=-eval(get(handles.latitud,'string'))*100
+    N2=-eval(get(handles.longitud,'string'))*100
+end
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHImagen de entradaREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+
+    fun1 =get(handles.color,'Value')-1
+    fun2 =get(handles.forma,'Value')-1
+
+    if(fun1==0 || fun2==0) 
+        vision=0;
+    end
+
+     if(fun1==1 && fun2==1) 
+        vision=1 ;
+     end
+     if(fun1==1 && fun2==2) 
+        vision=2;
+     end
+     if(fun1==1 && fun2==3) 
+        vision=3 ;
+     end
+     if(fun1==2 && fun2==1) 
+        vision=4 ;
+     end
+     if(fun1==2 && fun2==2) 
+        vision=5 ;
+     end
+     if(fun1==2 && fun2==3) 
+        vision=6 ;
+     end
+     if(fun1==3 && fun2==1) 
+        vision=7 ;
+     end
+     if(fun1==3 && fun2==2) 
+        vision=8 ;
+     end
+     if(fun1==3 && fun2==3) 
+        vision=9 ;
+     end
+    
+
+imagen=vision;%de los 9 casos basicos
+
+a1=fix(N1/100)
+b1=fix(N1-a1*100)
+c1=fix(N1*100-(a1*10000+b1*100))
+d1=fix(N1*10000-(a1*1000000+b1*10000+c1*100))
+
+a2=fix(N2/100)
+b2=fix(N2-a2*100)
+c2=fix(N2*100-(a2*10000+b2*100))
+d2=N2*10000-(a2*1000000+b2*10000+c2*100)
+
+i=0;
+while(i<15)
+i=i+1
+
+fwrite(s,'S','char');
+fwrite(s,a1,'uint8');
+fwrite(s,b1,'uint8'); 
+fwrite(s,c1,'uint8');
+fwrite(s,d1,'uint8');
+fwrite(s,a2,'uint8');
+fwrite(s,b2,'uint8'); 
+fwrite(s,c2,'uint8');
+fwrite(s,d2,'uint8'); 
+fwrite(s,imagen,'uint8'); 
+
+pause(0.04)
+
+ a2 = fread(s,10);
+    
+        if a2(1)=='S'
+
+        d11=a2(2);
+        d1_arduino=d11
+        d22=a2(3);
+        d2_arduino=d22
+        
+        d33=a2(4);
+        d3_arduino=d33
+        d44=a2(5);
+        d4_arduino=d44
+        
+        d55=a2(6);
+        d5_arduino=d55
+        d66=a2(7);
+        d6_arduino=d66
+        
+        d77=a2(8);
+        d7_arduino=d77
+        d88=a2(9);
+        d8_arduino=d88
+        
+        d99=a2(10);
+        d9_arduino=d99
+        
+        if a2(2)~=0
+            break;
+        end
+        end
+        
+%pause();
+
+
+end
+
+delete(instrfind({'Port'},{'COM15'})); %ajustar puerto serie
+
+% hObject    handle to pushbutton3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes during object creation, after setting all properties.
+function robot_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to robot (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in casa.
+function casa_Callback(hObject, eventdata, handles)
+% hObject    handle to casa (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of casa
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in carro.
+function carro_Callback(hObject, eventdata, handles)
+% hObject    handle to carro (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of carro
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in arbol.
+function arbol_Callback(hObject, eventdata, handles)
+% hObject    handle to arbol (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of arbol
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in edificio.
+function edificio_Callback(hObject, eventdata, handles)
+% hObject    handle to edificio (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of edificio
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in monitoreo.
+function monitoreo_Callback(hObject, eventdata, handles)
+delete(instrfind({'Port'},{'COM15'})); %ajustar puerto serie!
+format long
+%crear objeto serie
+s = serial('COM15','BaudRate',9600,'Terminator','CR/LF');
+warning('off','MATLAB:serial:fscanf:unsuccessfulRead');
+%abrir puerto
+fopen(s);
+% parámetros de medidas
+tmax = 100; % tiempo de captura en s
+rate = 33; % resultado experimental (comprobar)
+t=0;
+tic
+
+description = sprintf('%s<br>%s</br><br>%s</br>', ...
+   '3 Apple Hill Drive', 'Natick, MA. 01760', ...
+   'http://www.notasutilesenperu.blogspot.com');
+
+iconDir = fullfile(matlabroot,'toolbox','matlab','icons');
+iconFilename = fullfile(iconDir, 'robot1.gif');
+
+name = 'R';
+
+                
+% winopen(filename)
+%pause(5)
+
+while(1)
+ %   t = toc;
+    
+kmlFolder = tempdir;
+
+a2 = fread(s,9);
+
+    if a2(1)=='A'
+    %partes de la latitud
+    a=a2(2);
+    b=a2(3);
+    c=a2(4);
+    d=a2(5);
+    %partes de la longitud
+    e=a2(6)
+    f=a2(7)
+    g=a2(8)
+    h=a2(9)
+    
+lat=-integracion_gps(a,b,c,d)
+lon=-integracion_gps(e,f,g,h)
+
+if lat~=0
+filename = fullfile(kmlFolder, 'Autonomo.kml');
+
+kmlwrite(filename, lat, lon ,...
+   'Description', description, ...
+   'Name', name, ...
+   'Icon', iconFilename ,'IconScale', 0.5);
+
+winopen(filename)
+end
+
+    end
+
+%input('');
+pause(0.08)
+  
+end
+% resultado del cronometro
+fprintf('%g s de captura a %g cap/s \n',t,i/t);
+ 
+%% Limpiar la escena del crimen
+fclose(s);
+delete(s);
+clear s;
+delete(instrfind({'Port'},{'COM15'})); %ajustar puerto serie!
+
+##### SOURCE END #####
+--></body></html>
