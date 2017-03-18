@@ -1,8 +1,0 @@
-%%estudio numeros flotantes:
-%-------------GPS-LATITUD-LONGITUD---------------------------
-Lat=1213.2381 %S
-Long=07655.6331 %W
-
-%paso desintegracion:
-a=round(N/100)
-b=round()

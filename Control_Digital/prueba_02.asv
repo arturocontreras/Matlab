@@ -1,9 +1,0 @@
-tau=0.5;
-T=tau/5;
-Gc=tf(2,[tau 1]);
-Gd=c2d(Gc,T,'zoh')
-Fd=feedback(Gd,1);
-Fc=feedback(Gc,1);
-tk=0:T:1
-
-
